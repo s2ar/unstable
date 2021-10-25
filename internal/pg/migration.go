@@ -10,7 +10,6 @@ import (
 )
 
 func RunMigrations(cfg *config.Configuration) error {
-
 	if cfg.Database.MigrationsPath == "" {
 		return nil
 	}
@@ -30,6 +29,5 @@ func RunMigrations(cfg *config.Configuration) error {
 	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
 		return err
 	}
-
 	return nil
 }

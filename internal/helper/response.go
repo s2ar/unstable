@@ -10,34 +10,6 @@ type Error struct {
 	Error string `json:"error"`
 }
 
-/*
-func JSONOKResponse(w http.ResponseWriter) {
-	var ok struct {
-		Result string `json:"result"`
-	}
-
-	ok.Result = "OK"
-
-	JSONResponse(w, ok)
-}
-
-
-
-
-func NoContentResponse(w http.ResponseWriter) {
-	w.WriteHeader(http.StatusNoContent)
-}
-
-func CreatedResponse(w http.ResponseWriter, data interface{}) {
-	w.Header().Add("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(http.StatusCreated)
-	err := json.NewEncoder(w).Encode(data)
-	if err != nil {
-		goerrors.Log().WithError(err).Error("cannot write response")
-	}
-}
-*/
-
 func JSONResponse(w http.ResponseWriter, data interface{}) {
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
 	err := json.NewEncoder(w).Encode(data)
