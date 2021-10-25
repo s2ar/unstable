@@ -3,8 +3,12 @@
 Шаги запуска:
 
 1) Инициализация PostgresSQL:
-make run_db
+**make run_db**
 2) Запуск Unstable сервиса:
-make run_unstable
+**make run_unstable**
 3) Запуск Check сервиса:
-make run_check
+**make run_check**
+
+Вывод в консоль:
+!https://ibb.co/fMrLK63
+
