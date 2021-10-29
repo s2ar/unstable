@@ -18,7 +18,7 @@ func (n NotFoundErr) Error() string {
 
 func NewNotFoundErr(template string, args ...interface{}) error {
 	return NotFoundErr{
-		message: fmt.Sprintf(template, args...),
+		message: fmt.Sprintf(template, args...), // nolint: vet
 	}
 }
 
@@ -40,6 +40,6 @@ func NewHTTPError(err error, status int, format string, args ...interface{}) *HT
 	return &HTTPError{
 		Status:  status,
 		Err:     err,
-		message: fmt.Sprintf(format, args...),
+		message: fmt.Sprintf(format, args...), // nolint: vet
 	}
 }
