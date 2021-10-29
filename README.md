@@ -1,16 +1,11 @@
-# unstable
-
-Шаги запуска:
-
-1) Инициализация PostgresSQL:
-**make run_db**
-2) Запуск Unstable сервиса:
-**make run_unstable**
-3) Запуск Check сервиса:
-**make run_check**
-
-Unstable сервис имеет эндпоинт http://localhost:8083/api/team/top 
+# Unstable service
+## Описание
+При запуске сохраняются данные с внешнего источника. 
+Сервис имеет эндпоинт http://localhost:8083/api/team/top по которому в случайном 
+порядке может отдать статус 200, 408 или 500
+## Howto:
+`make run`
 
 Вывод в консоль:
-!https://ibb.co/fMrLK63
+![2021-10-29-2e6](https://user-images.githubusercontent.com/2817417/139493611-3333c98b-15d8-4dc3-b68f-786096d9406a.png)
 
