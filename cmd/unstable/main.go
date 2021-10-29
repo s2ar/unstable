@@ -111,7 +111,7 @@ func cmdStartServer(cliContext *cli.Context) error {
 	log.Println("running PostgreSQL migrations")
 	err = pg.RunMigrations(cfg)
 	if err != nil {
-		return fmt.Errorf("RunMigrations failed: %w", err)
+		return fmt.Errorf("RunMigrations failed: %e", err)
 	}
 
 	// upload data

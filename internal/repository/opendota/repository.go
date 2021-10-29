@@ -41,7 +41,7 @@ func (r *repositoryImpl) UpdateTeam(teams *DBTeam) error {
 		OnConflict("(id) DO UPDATE").
 		Insert()
 	if err != nil {
-		return fmt.Errorf("SQL insert failed: %w", err)
+		return fmt.Errorf("SQL insert failed: %e", err)
 	}
 	return nil
 }
