@@ -2,6 +2,32 @@ version: '3.8'
 
 services:
 
+  unstable:
+    build:
+      context: ./
+      dockerfile: Dockerfile.unstable
+    command: ./unstable -c config/config.yml server
+    container_name: unstable
+    ports:
+      - 8083:8083
+    depends_on:
+      - postgres
+    volumes:
+      - ./config:/go/src/app/cmd/unstable/config
+      - ./internal/pg/migrations:/go/src/app/cmd/unstable/internal/pg/migrations
+
+  check:
+    build:
+      context: ./
+      dockerfile: Dockerfile.check
+    command: ./check
+    container_name: check
+    ports:
+      - 8084:8084
+    depends_on:
+      - unstable
+      - postgres
+
   postgres:
     restart: always
     image: postgres:latest

@@ -3,13 +3,12 @@ DataService:
   URL: https://api.opendota.com/api/
 
 Database:
-  DSN: postgres://postgres:postgres@localhost:5433/unstable?sslmode=disable
+  DSN: postgres://postgres:postgres@postgres/unstable?sslmode=disable
   MigrationsPath: "file://internal/pg/migrations"
   LogLevel: error
 
 Server:
   Listen: "0.0.0.0:8083"
-  MainSite: http://localhost/
   WriteTimeout: 60
   ReadTimeout: 60
   IdleTimeout: 60

@@ -1,5 +1,4 @@
-run_db:
-	@echo " > Start Postgres (via docker-compose)"
+run:
 	docker-compose up  --remove-orphans --build
 
 run_unstable:
