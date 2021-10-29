@@ -9,4 +9,6 @@ run_check:
 	@echo " > Start Check service"
 	go build -o build/check_build github.com/s2ar/unstable/cmd/check &&  ./build/check_build
 
-	
+lint:
+	@echo " > Start lint"
+	@golangci-lint run

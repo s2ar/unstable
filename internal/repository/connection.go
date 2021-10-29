@@ -45,7 +45,7 @@ func New(dsn string) (*DB, error) {
 			}
 			return nil, fmt.Errorf("pgDB.Exec failed: %w", err)
 		}
-		log.Printf("[PostgreSQL.Dial] (Ping attempt %d) OK\n", attempt)
+		log.Printf("[PostgreSQL.New] (Ping attempt %d) OK\n", attempt)
 		break
 	}
 

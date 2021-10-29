@@ -12,3 +12,4 @@ Server:
   WriteTimeout: 60
   ReadTimeout: 60
   IdleTimeout: 60
+  GracefulShutdown: 1

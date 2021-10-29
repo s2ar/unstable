@@ -28,8 +28,6 @@ func InitConfig(filename string) (*config.Configuration, error) {
 	return cfg, nil
 }
 
-// 	helper.ErrorResponse(w, r, errors.Wrap(err, "cannot get bitrix service"))
-
 func main() {
 	if err := run(); err != nil {
 		log.Fatal(err)
