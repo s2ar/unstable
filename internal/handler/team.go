@@ -11,13 +11,20 @@ import (
 	"github.com/s2ar/unstable/internal/helper"
 )
 
+const maxRandNum = 10
+
 func GenRouting(r *mux.Router) {
-	r.Path("/team/top").Methods(http.MethodGet).HandlerFunc(handleTeamGetInfo)
+	r.Path("/team/top").Methods(http.MethodGet).HandlerFunc(TeamGetInfo)
 }
 
-func handleTeamGetInfo(w http.ResponseWriter, r *http.Request) {
+func TeamGetInfo(w http.ResponseWriter, r *http.Request) {
+	randNum, err := rand.Int(rand.Reader, big.NewInt(maxRandNum))
+	if err != nil {
+		helper.ErrorResponse(w, r, err)
+		return
+	}
 
-	status := imitationOfError(w, r)
+	status := imitationOfError(w, r, randNum.Int64())
 	if status {
 		return
 	}
@@ -39,18 +46,13 @@ func handleTeamGetInfo(w http.ResponseWriter, r *http.Request) {
 	helper.JSONResponse(w, response)
 }
 
-func imitationOfError(w http.ResponseWriter, r *http.Request) bool {
-	randNum, err := rand.Int(rand.Reader, big.NewInt(10))
-	if err != nil {
-		helper.ErrorResponse(w, r, err)
-		return true
-	}
+func imitationOfError(w http.ResponseWriter, r *http.Request, rand int64) bool {
 
-	if randNum.Int64() < 1 {
+	if rand < 1 {
 		time.Sleep(3 * time.Second)
 		helper.ErrorResponse(w, r, helper.NewHTTPError(nil, http.StatusRequestTimeout, "request timeout"))
 		return true
-	} else if randNum.Int64() < 3 {
+	} else if rand < 3 {
 		helper.ErrorResponse(w, r, nil)
 		return true
 	}

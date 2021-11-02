@@ -1,3 +1,5 @@
+//go:generate mockgen -destination=./mocks.go -source=./service.go -package=opendota
+
 package opendota
 
 import (
