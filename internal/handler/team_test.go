@@ -43,18 +43,14 @@ func TestHandler_teamGetInfo(t *testing.T) {
 			generalMiddleware := []mux.MiddlewareFunc{
 				application.WithApp(app),
 			}
-			api := r.PathPrefix("/api/").Subrouter()
-			api.Use(generalMiddleware...)
-			GenRouting(api)
-
-			//r.Path("/team/top").Methods(http.MethodGet).HandlerFunc(TeamGetInfo)
+			r.Use(generalMiddleware...)
 
 			// Create Request
 			w := httptest.NewRecorder()
 			req := httptest.NewRequest("GET", "/api/team/top/", nil)
 
-			// Make Request
-			api.ServeHTTP(w, req)
+			r.HandleFunc("/api/team/top/", TeamGetInfo)
+			r.ServeHTTP(w, req)
 
 			// Assert
 			assert.Equal(t, w.Code, test.expectedStatusCode)

@@ -2,6 +2,7 @@ package handler
 
 import (
 	"crypto/rand"
+	"fmt"
 	"math/big"
 	"net/http"
 	"time"
@@ -18,19 +19,23 @@ func GenRouting(r *mux.Router) {
 }
 
 func TeamGetInfo(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("IN TeamGetInfo")
 	randNum, err := rand.Int(rand.Reader, big.NewInt(maxRandNum))
 	if err != nil {
+		fmt.Printf("ERR TeamGetInfo %e", err)
 		helper.ErrorResponse(w, r, err)
 		return
 	}
 
 	status := imitationOfError(w, r, randNum.Int64())
 	if status {
+		fmt.Println("IN 1 TeamGetInfo")
 		return
 	}
 
 	app, err := application.GetAppFromRequest(r)
 	if err != nil {
+		fmt.Printf("ERR1 TeamGetInfo %e", err)
 		helper.ErrorResponse(w, r, err)
 		return
 	}
