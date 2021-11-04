@@ -1,12 +1,14 @@
 package handler
 
 import (
+	"fmt"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/golang/mock/gomock"
 	"github.com/gorilla/mux"
 	"github.com/magiconair/properties/assert"
+	"github.com/s2ar/unstable/config"
 	"github.com/s2ar/unstable/internal/application"
 	"github.com/s2ar/unstable/internal/service/opendota"
 )
@@ -30,11 +32,17 @@ func TestHandler_teamGetInfo(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			// Init Dependencies
+			// Init Dependencie
 			c := gomock.NewController(t)
 			defer c.Finish()
 
-			app := application.NewMockApplication(c)
+			//app := application.NewMockApplication(c)
+			cfg := &config.Configuration{}
+			app, err := application.NewApp(cfg)
+			if err != nil {
+				fmt.Println(err) // @todo
+				return
+			}
 
 			repo := opendota.NewMockOpendota(c)
 			test.mockBehavior(repo)

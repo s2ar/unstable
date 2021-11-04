@@ -18,7 +18,7 @@ type DB struct {
 }
 
 // New creates new database connection to postgres
-func New(dsn string) (*DB, error) {
+func NewPG(dsn string) (*DB, error) {
 	ctx := context.Background()
 	pgOpts, err := pg.ParseURL(dsn)
 	if err != nil {

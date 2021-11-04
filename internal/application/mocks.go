@@ -80,10 +80,10 @@ func (mr *MockApplicationMockRecorder) RepositoryOpendota() *gomock.Call {
 }
 
 // ServiceOpendota mocks base method.
-func (m *MockApplication) ServiceOpendota() opendota0.Opendota {
+func (m *MockApplication) ServiceOpendota() opendota0.MockOpendota {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ServiceOpendota")
-	ret0, _ := ret[0].(opendota0.Opendota)
+	ret0, _ := ret[0].(opendota0.MockOpendota)
 	return ret0
 }
 

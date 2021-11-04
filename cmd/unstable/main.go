@@ -15,6 +15,7 @@ import (
 	"github.com/s2ar/unstable/internal/application"
 	"github.com/s2ar/unstable/internal/handler"
 	"github.com/s2ar/unstable/internal/pg"
+	"github.com/s2ar/unstable/internal/repository"
 	"github.com/shopspring/decimal"
 	"github.com/urfave/cli/v2"
 )
@@ -101,6 +102,15 @@ func cmdStartServer(cliContext *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
+	connection, err := repository.NewPG(cfg.Database.DSN)
+	if err != nil {
+		return errors.Wrap(err, "cannot new connection")
+	}
+
+	repos := repository.New(connection)
+	services := service.NewService(repos)
+	handlers := handler.NewHandler(services)
 
 	app, err := application.NewApp(cfg)
 	if err != nil {
